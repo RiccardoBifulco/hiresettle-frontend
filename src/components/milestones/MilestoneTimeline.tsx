@@ -23,6 +23,7 @@ import { toReadableError } from '@/lib/utils/toast-error';
 import { downloadIcs, googleCalendarUrl } from '@/lib/utils/calendar';
 import type { Engagement, Milestone, MilestoneStatus, RetentionTimer } from '@/types';
 import { ProofSubmitForm } from './ProofSubmitForm';
+import { env } from '@/lib/env';
 
 interface Props {
   engagement: Engagement;
@@ -46,7 +47,7 @@ export function MilestoneTimeline({ engagement, userRole, onUpdate }: Props) {
   );
 }
 
-const IPFS_GATEWAY = process.env.NEXT_PUBLIC_IPFS_GATEWAY ?? 'https://ipfs.io';
+const IPFS_GATEWAY = env.NEXT_PUBLIC_IPFS_GATEWAY;
 
 /** Returns true for bare CIDs (Qm… v0 or bafy… v1) and ipfs:// URIs. */
 function isIpfs(hash: string): boolean {

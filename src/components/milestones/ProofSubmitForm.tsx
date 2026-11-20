@@ -4,8 +4,9 @@ import { useState, useRef, useCallback, DragEvent, ChangeEvent } from 'react';
 import { Upload, FileText, X, ExternalLink, Loader2, AlertCircle } from 'lucide-react';
 import { uploadApi } from '@/lib/api/services';
 import { cn } from '@/lib/utils';
+import { env } from '@/lib/env';
 
-const IPFS_GATEWAY = process.env.NEXT_PUBLIC_IPFS_GATEWAY ?? 'https://ipfs.io';
+const IPFS_GATEWAY = env.NEXT_PUBLIC_IPFS_GATEWAY;
 
 interface Props {
   onHashReady: (hash: string) => void;

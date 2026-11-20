@@ -17,6 +17,7 @@
 import { useEffect, useRef, useState } from 'react';
 import { watchWallet, normalizeNetwork, isFreighterInstalled } from '@/lib/stellar/freighter';
 import { useAuthStore } from '@/lib/hooks/use-auth-store';
+import { env } from '@/lib/env';
 
 export interface FreighterWatcherState {
   /** True when Freighter's network doesn't match NEXT_PUBLIC_STELLAR_NETWORK */
@@ -35,7 +36,7 @@ export interface FreighterWatcherState {
 
 export function useFreighterWatcher(): FreighterWatcherState {
   const appNetwork = normalizeNetwork(
-    process.env.NEXT_PUBLIC_STELLAR_NETWORK ?? 'testnet',
+    env.NEXT_PUBLIC_STELLAR_NETWORK,
   );
 
   const authAddress = useAuthStore((s) => s.address);
@@ -109,7 +110,7 @@ export function useFreighterWatcher(): FreighterWatcherState {
 export async function assertFreighterReady(expectedAddress: string): Promise<void> {
   const { getFreighterStatus } = await import('@/lib/stellar/freighter');
   const appNetwork = normalizeNetwork(
-    process.env.NEXT_PUBLIC_STELLAR_NETWORK ?? 'testnet',
+    env.NEXT_PUBLIC_STELLAR_NETWORK,
   );
 
   const { address, network } = await getFreighterStatus();

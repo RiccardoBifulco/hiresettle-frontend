@@ -2,8 +2,9 @@ import { clsx, type ClassValue } from 'clsx';
 import { twMerge } from 'tailwind-merge';
 import { format, formatDistanceToNow } from 'date-fns';
 import type { MilestoneStatus, EngagementStatus } from '@/types';
+import { env } from '@/lib/env';
 
-export const LEDGERS_PER_DAY = Number(process.env.NEXT_PUBLIC_LEDGERS_PER_DAY) || 17280;
+export const LEDGERS_PER_DAY = env.NEXT_PUBLIC_LEDGERS_PER_DAY;
 
 export function cn(...inputs: ClassValue[]) { return twMerge(clsx(inputs)); }
 
@@ -60,7 +61,7 @@ export function timeAgo(date: string | null): string {
 
 /** Stellar network slug used by stellar.expert */
 function explorerNetwork(): 'testnet' | 'public' {
-  return process.env.NEXT_PUBLIC_STELLAR_NETWORK === 'mainnet' ? 'public' : 'testnet';
+  return env.NEXT_PUBLIC_STELLAR_NETWORK === 'mainnet' ? 'public' : 'testnet';
 }
 
 /** Link to a transaction on stellar.expert */

@@ -8,6 +8,7 @@ import { connectFreighter, isFreighterInstalled, signNonce } from '@/lib/stellar
 import { authApi } from '@/lib/api/services';
 import { useAuthStore } from '@/lib/hooks/use-auth-store';
 import { Networks } from '@stellar/stellar-sdk';
+import { env } from '@/lib/env';
 
 type Step = 'idle' | 'connecting' | 'signing' | 'verifying' | 'done';
 
@@ -41,7 +42,7 @@ function LoginContent() {
       const nonce = await authApi.getNonce(address);
 
       setStep('signing');
-      const networkPassphrase = process.env.NEXT_PUBLIC_STELLAR_NETWORK === 'mainnet'
+      const networkPassphrase = env.NEXT_PUBLIC_STELLAR_NETWORK === 'mainnet'
         ? Networks.PUBLIC
         : Networks.TESTNET;
 

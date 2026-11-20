@@ -9,10 +9,11 @@ import {
 import { eventsApi } from '@/lib/api/services';
 import { timeAgo, shortAddress } from '@/lib/utils';
 import type { ChainEvent } from '@/types';
+import { env } from '@/lib/env';
 
 const PAGE_SIZE = 20;
 
-const NETWORK = process.env.NEXT_PUBLIC_STELLAR_NETWORK ?? 'testnet';
+const NETWORK = env.NEXT_PUBLIC_STELLAR_NETWORK;
 const txUrl = (hash: string) =>
   NETWORK === 'mainnet'
     ? `https://stellar.expert/explorer/public/tx/${hash}`

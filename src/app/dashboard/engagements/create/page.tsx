@@ -10,8 +10,9 @@ import { engagementsApi } from '@/lib/api/services';
 import { useAuthStore } from '@/lib/hooks/use-auth-store';
 import { generateEngagementId, LEDGERS_PER_DAY, usdcToStroops } from '@/lib/utils';
 import type { MilestoneInput } from '@/types';
+import { env } from '@/lib/env';
 
-const USDC_ADDRESS = process.env.NEXT_PUBLIC_USDC_ADDRESS!;
+const USDC_ADDRESS = env.NEXT_PUBLIC_USDC_ADDRESS;
 
 const DEFAULT_MILESTONES: MilestoneInput[] = [
   { name: 'Candidate Placed',  paymentPercent: 30, kind: 'PLACEMENT' },

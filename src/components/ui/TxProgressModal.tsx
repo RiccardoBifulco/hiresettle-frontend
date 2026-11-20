@@ -19,6 +19,7 @@
 import { useState } from 'react';
 import { CheckCircle2, Circle, Clock, ExternalLink, Loader2, RefreshCw, XCircle } from 'lucide-react';
 import type { TxStep, TxStepId, TxStepStatus } from '@/lib/stellar/contract';
+import { env } from '@/lib/env';
 
 export interface TxProgressModalProps {
   isOpen: boolean;
@@ -43,7 +44,7 @@ export interface TxProgressModalProps {
 // Helpers
 // ----------------------------------------------------------
 
-const NETWORK = process.env.NEXT_PUBLIC_STELLAR_NETWORK ?? 'testnet';
+const NETWORK = env.NEXT_PUBLIC_STELLAR_NETWORK;
 
 function explorerUrl(txHash: string): string {
   const net = NETWORK === 'mainnet' ? 'public' : 'testnet';

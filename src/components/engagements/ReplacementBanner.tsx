@@ -7,6 +7,7 @@ import { requestReplacement } from '@/lib/stellar/contract';
 import { useAuthStore } from '@/lib/hooks/use-auth-store';
 import { toReadableError } from '@/lib/utils/toast-error';
 import type { Engagement } from '@/types';
+import { env } from '@/lib/env';
 
 interface Props {
   engagement: Engagement;
@@ -14,7 +15,7 @@ interface Props {
   onUpdate: () => void;
 }
 
-const NETWORK = process.env.NEXT_PUBLIC_STELLAR_NETWORK ?? 'testnet';
+const NETWORK = env.NEXT_PUBLIC_STELLAR_NETWORK;
 const explorerUrl = (txHash: string) =>
   NETWORK === 'mainnet'
     ? `https://stellar.expert/explorer/public/tx/${txHash}`
