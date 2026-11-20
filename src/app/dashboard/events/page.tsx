@@ -55,9 +55,7 @@ export default function ChainEventsPage() {
       });
       // API returns newest-first if the backend sorts by ledger desc;
       // sort client-side too in case it doesn't
-      const sorted = [...(res.data ?? res)].sort(
-        (a: ChainEvent, b: ChainEvent) => b.ledger - a.ledger,
-      );
+      const sorted = [...res.data].sort((a, b) => b.ledger - a.ledger);
       setEvents(sorted);
       setTotal(res.meta?.total ?? sorted.length);
     } catch {
